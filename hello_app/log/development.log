@@ -1,0 +1,42 @@
+Started GET "/" for 127.0.0.1 at 2024-05-25 19:02:42 +0900
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/haru/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/haru/.rbenv/versions/3.1.0/lib/ruby/gems/3.1.0/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 1.1ms | Allocations: 587)
+Completed 200 OK in 8ms (Views: 3.3ms | ActiveRecord: 0.0ms | Allocations: 4652)
+
+
+Started GET "/" for 127.0.0.1 at 2024-05-25 19:03:23 +0900
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 20)
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.0ms | Allocations: 2175)
+
+
+Started GET "/" for 127.0.0.1 at 2024-05-25 19:03:23 +0900
+Processing by ApplicationController#hello as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 7)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 248)
+
+
+Started GET "/" for 127.0.0.1 at 2024-05-25 19:03:57 +0900
+Processing by ApplicationController#goodbye as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 11)
+Completed 200 OK in 1ms (Views: 0.5ms | Allocations: 517)
+
+
+Started GET "/" for 127.0.0.1 at 2024-05-25 19:09:05 +0900
+Processing by ApplicationController#goodbye as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.2ms | Allocations: 20)
+Completed 200 OK in 5ms (Views: 2.8ms | ActiveRecord: 0.0ms | Allocations: 2106)
+
+
+Started GET "/" for 127.0.0.1 at 2024-05-25 19:09:06 +0900
+Processing by ApplicationController#goodbye as HTML
+  Rendering html template
+  Rendered html template (Duration: 0.0ms | Allocations: 7)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 248)
+
+
