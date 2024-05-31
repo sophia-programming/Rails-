@@ -1,0 +1,20 @@
+第四章
+＜ハッシュ＞
+・ハッシュ（例：test1）は「：」を使ってキーを指定し、valueをその後ろに記述する。
+ 例）
+ test1 = {'one': 'uno', 'two': 'dos', 'three': 'tres'}
+=> {:one=>"uno", :two=>"dos", :three=>"tres"}
+irb(main):003* test1.each do |key, value|
+irb(main):004*   puts "Key '#{key}'はスペイン語で'#{value}'"
+irb(main):005> end
+Key 'one'はスペイン語で'uno'
+Key 'two'はスペイン語で'dos'
+Key 'three'はスペイン語で'tres'
+=> {:one=>"uno", :two=>"dos", :three=>"tres"}
+
+
+Rubyのハッシュにおいて、特にシンボルがキーとして多く使われる理由：
+・シンボルは文字列よりもメモリを節約できるため。
+・シンボルはイミュータブル（変更不可）であるため、キーとして安全に使える。
+・シンボルは一意であるため、キーとして使うと重複がない。
+など
