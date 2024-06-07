@@ -6,7 +6,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      # ユーザーログイン後にユーザー情報のページにリダイレクトする
+      reset_session #ログインの直前に必ずこれを書くことでセッション固定攻撃を防ぐ
+      log_in user
+      redirect_to user
     else
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new', status: :unprocessable_entity
@@ -14,5 +16,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def session_params
+    params.require(:session).permit(:email, :password)
   end
 end
