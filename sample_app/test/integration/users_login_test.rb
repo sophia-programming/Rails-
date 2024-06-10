@@ -78,3 +78,21 @@ class LogoutTest < Logout
     assert_redirected_to root_url
   end
 end
+
+
+class RememberingTest < UsersLogin
+
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_nil cookies[:remember_token]  # クッキーにトークンが存在することを確認
+    assert_equal assigns(:user).remember_token, cookies[:remember_token]
+  end
+
+  test "login without remembering" do
+    # Cookieを保存してログイン
+    log_in_as(@user, remember_me: '1')
+    # Cookieが削除されていることを検証してからログイン
+    log_in_as(@user, remember_me: '0')
+    assert cookies[:remember_token].blank?
+  end
+end
