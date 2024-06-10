@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user &. authenticate(params[:session][:password])
       reset_session #ログインの直前に必ずこれを書くことでセッション固定攻撃を防ぐ
-      remember user #ログイン成功後にrememberメソッドを呼び出す
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       log_in user
       redirect_to user
     else
