@@ -18,10 +18,10 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_template 'users/edit'
   end
 
-  test "successful edit" do
-    log_in_as(@user)
+  test "successful edit with friendly forwarding" do
     get edit_user_path(@user)
-    assert_template 'users/edit'
+    log_in_as(@user)
+    assert_redirected_to edit_user_url(@user)
     name  = "Foo Bar"
     email = "foo@bar.com"
     patch user_path(@user), params: { user: { name:  name,
@@ -33,5 +33,11 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name,  @user.name
     assert_equal email, @user.email
+
+    # フレンドリーフォワーディングが初回のみに適用されるか確認する
+    delete logout_path # ログアウトする
+    assert_not is_logged_in? # ログアウトしていることを確認する
+    log_in_as(@user)   # 再度ログインする
+    assert_redirected_to @user # 今回はプロフィール画面にリダイレクトされる
   end
 end
