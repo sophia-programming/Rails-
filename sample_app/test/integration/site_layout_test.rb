@@ -10,8 +10,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     # 未ログインユーザーの場合
     get root_path
     assert_template 'static_pages/home'
-    #一旦root_pathを３に設定（本来は２でpassする。未達成）
-    assert_select "a[href=?]", root_path, count: 3
+    assert_select "a[href=?]", root_path, count: 2
     assert_select "a[href=?]", help_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
