@@ -73,6 +73,11 @@ class User < ApplicationRecord
     update_columns(reset_digest:  User.digest(reset_token), reset_sent_at: Time.zone.now)
   end
 
+  # ユーザーのステータスフィードを返す
+  def feed
+    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+  end
+
   # パスワード再設定のメールを送信する
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
@@ -83,10 +88,13 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  # 試作feedの定義
-  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  # ユーザーのステータスフィードを返す
   def feed
-    Micropost.where("user_id = ?", id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+      .includes(:user, image_attachment: :blob)
   end
 
   # ユーザーをフォローする
